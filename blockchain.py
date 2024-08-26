@@ -15,7 +15,7 @@ class Blockchain:
     def create_block(self, proof, prev_hash):
         block = {
             'index': len(self.chain)+1, 
-            'timestamp': str(datetime.datetime().now()), 
+            'timestamp': str(datetime.datetime.now()), 
             'proof':proof, 
             'previous_hash':prev_hash
             }
@@ -91,4 +91,13 @@ def get_chain():
 
     return jsonify(response), 200
 
+# - Get endpoint to check if chain is valid
+@app.route('/is-valid', methods=['GET'])
+def is_valid():
+    response = {
+        'validity': blockchain.verify_chain(blockchain.chain)
+    }
+    return jsonify(response),200
+
 # Run the app
+app.run(host='0.0.0.0', port=5000)
