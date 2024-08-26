@@ -57,3 +57,9 @@ class Blockchain:
         return True
 
 #Mining Blockchain
+
+# - Create a web app to interact with blockchain
+app = Flask(__name__)
+
+# - Create a blockchain
+blockchain = Blockchain()
